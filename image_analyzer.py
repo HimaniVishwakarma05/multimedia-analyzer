@@ -80,5 +80,4 @@ if __name__ == "__main__":
         target_path = sys.argv[1]
     else:
         target_path = input("Enter image path: ").strip().strip('"').strip("'")
-    
-analyze_image(target_path)
+    analyze_image(target_path)
