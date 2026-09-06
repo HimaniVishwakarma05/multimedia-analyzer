@@ -24,6 +24,9 @@ You can also run an individual analyzer:
 python image_analyzer.py path/to/image.jpg
 python audio_analyzer.py path/to/audio.mp3
 python video_analyzer.py path/to/video.mp4
+
+# Analyze metadata and play the video in an HD-sized preview window
+python video_analyzer.py path/to/video.mp4 --play
 ```
 
 Supported image formats: JPG, JPEG, PNG, TIFF, WEBP, BMP.
