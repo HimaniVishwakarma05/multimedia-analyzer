@@ -4,6 +4,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description="Analyze image, audio, and video metadata.")
     parser.add_argument("file", help="Path to a supported media file")
+    parser.add_argument("--play", action="store_true", help="Play a video preview after reading its metadata")
     args = parser.parse_args()
     extension = args.file.lower().rsplit(".", 1)[-1] if "." in args.file else ""
     if extension in {"jpg", "jpeg", "png", "tiff", "webp", "bmp"}:
@@ -15,9 +16,11 @@ def main():
 
         print_report(analyze_audio(args.file))
     elif extension in {"mp4", "avi", "mov", "mkv", "webm"}:
-        from video_analyzer import analyze_video, print_report
+        from video_analyzer import analyze_video, play_video, print_report
 
         print_report(analyze_video(args.file))
+        if args.play:
+            play_video(args.file)
     else:
         parser.error(f"Unsupported media format: .{extension or 'unknown'}")
 

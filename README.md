@@ -16,6 +16,7 @@ Use the unified entry point for any supported file:
 python multimedia_analyzer.py samples/sample.jpg
 python multimedia_analyzer.py samples/audio.mp3
 python multimedia_analyzer.py path/to/video.mp4
+python multimedia_analyzer.py path/to/video.mp4 --play
 ```
 
 You can also run an individual analyzer:

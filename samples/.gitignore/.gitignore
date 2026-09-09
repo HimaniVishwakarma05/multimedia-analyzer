@@ -1,5 +1,3 @@
 venv/
 __pycache__/
 *.pyc
-.vscode/
-C:\Users\shree Ram computer\OneDrive\Desktop\Multimedia Analyzer\venv\python multimedia_analyzer.py samples/sample.jpg
