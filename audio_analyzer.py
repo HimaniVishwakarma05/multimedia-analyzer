@@ -11,7 +11,6 @@ def format_size(size_bytes):
         size_bytes /= 1024.0
     return f"{size_bytes:.2f} TB"
 
-
 def analyze_audio(audio_path):
     if not os.path.isfile(audio_path):
         raise FileNotFoundError(f"File not found: {audio_path}")
