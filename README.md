@@ -34,40 +34,21 @@ You can also run an individual analyzer:
 .\.venv\Scripts\python.exe video_analyzer.py samples/video.mp4 --play
 ```
 
-## Voice cloning
+## AI voice transformation web app
 
-This project also includes a command-line voice cloning helper for ElevenLabs-based voice generation.
-
-```powershell
-# Create a cloned voice from a sample recording
-.\.venv\Scripts\python.exe voice_cloning.py --source .\samples\voice_sample.wav --voice-name "My Cloned Voice" --api-key "YOUR_ELEVENLABS_API_KEY"
-
-# Generate speech from an existing voice ID
-.\.venv\Scripts\python.exe voice_cloning.py --voice-id "EXAVITQu4vr4xnSDxMaL" --text "Hello from the multimedia analyzer" --api-key "YOUR_ELEVENLABS_API_KEY" --output .\output\speech.mp3
-
-# Clone then synthesize in one command
-.\.venv\Scripts\python.exe voice_cloning.py --source .\samples\voice_sample.wav --voice-name "My Cloned Voice" --text "This audio was generated from a cloned voice" --api-key "YOUR_ELEVENLABS_API_KEY" --output .\output\result.mp3
-```
-
-Set the API key in the environment instead of passing it each time:
+A consent-first Next.js Speech-to-Speech application is available in `voice_transformer_app`. It transforms recordings only into configured developer-controlled synthetic voices; it does not create cloned voices or support real-person impersonation.
 
 ```powershell
-$env:ELEVENLABS_API_KEY = "YOUR_ELEVENLABS_API_KEY"
+cd voice_transformer_app
+npm install
+Copy-Item .env.example .env.local
+# Add the ElevenLabs API key and synthetic voice IDs to .env.local.
+npm run dev
 ```
 
-### Simple web app
+Open `http://localhost:3000`. See [voice_transformer_app/README.md](voice_transformer_app/README.md) for setup, privacy, testing and Vercel deployment details.
 
-A minimal Flask-based voice-transformer UI is available in `voice_transformer_app`.
-
-```powershell
-.\.venv\Scripts\python.exe voice_transformer_app\app.py
-```
-
-Then open:
-
-```text
-http://localhost:5000
-```
+The app sends source audio directly to ElevenLabs Speech-to-Speech. Provider credentials are server-only, and uploaded/generated audio is not permanently stored by the app.
 
 ## Quick Windows launcher
 
