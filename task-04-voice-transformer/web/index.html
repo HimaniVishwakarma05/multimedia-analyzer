@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111827">
+    <title>Voice Transformer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">SPEECH-TO-SPEECH · ELEVENLABS</p>
+        <h1>Voice <span>Transformer</span></h1>
+        <p class="intro">Keep your spoken performance and transform its voice into an authorized synthetic target.</p>
+      </header>
+
+      <section class="panel" aria-labelledby="transform-title">
+        <h2 id="transform-title">Create a transformed recording</h2>
+        <label class="field-label" for="audio-file">1. Choose an audio file</label>
+        <input id="audio-file" type="file" accept=".mp3,.wav,.m4a,.ogg,.oga,.flac,.webm,audio/*">
+        <div class="record-controls">
+          <button id="record-button" class="secondary" type="button">Record from microphone</button>
+          <button id="stop-button" class="secondary" type="button" disabled>Stop recording</button>
+        </div>
+        <p class="hint">MP3, WAV, M4A, OGG/OGA, FLAC or WebM · up to 15 MB and 30 seconds.</p>
+        <audio id="original-player" controls hidden></audio>
+
+        <label class="field-label" for="voice">2. Select a configured synthetic voice</label>
+        <select id="voice" name="voice">
+          {% for voice in voices %}
+          <option value="{{ voice.slug }}" {% if not voice.configured %}disabled{% endif %}>
+            {{ voice.name }}{% if not voice.configured %} (configure voice ID in .env){% endif %}
+          </option>
+          {% endfor %}
+        </select>
+
+        <label class="permission">
+          <input id="permission" type="checkbox">
+          <span>I own this recording or have permission to use it, and will not use the result to impersonate someone.</span>
+        </label>
+        <button id="transform-button" class="primary" type="button">Transform voice</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="result-panel" class="panel result-panel" hidden aria-labelledby="result-title">
+        <h2 id="result-title">Your transformed audio</h2>
+        <audio id="result-player" controls></audio>
+        <a id="download-link" class="download" download="transformed-voice.mp3">Download MP3</a>
+      </section>
+
+      <footer>Audio is processed by ElevenLabs. This app does not save uploads to disk.</footer>
+    </main>
+  </body>
+</html>

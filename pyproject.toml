@@ -1,0 +1,14 @@
+[project]
+name = "multimedia-lab"
+version = "0.1.0"
+description = "Multimedia lab: C media metadata analyzer + voice transformer + photo fix/OCR pipe"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "numpy",
+  "scipy",
+  "pillow",
+  "opencv-python-headless",
+  "easyocr",
+  "torch",
+  "sounddevice",  # optional at runtime: mic record/playback, ffmpeg fallback exists
+]
